@@ -59,16 +59,31 @@
 
       var node = document.createElement('li');
       var text = myObj.Name + '-' + myObj.Mail + '-' + myObj.Mobile;
-      var btn = document.createElement('input');
-      btn.value = 'Delete';
-      btn.type = 'button';
-      node.appendChild(document.createTextNode(text));
-      node.appendChild(btn);
-      items.appendChild(node);
-      btn.onclick = () => {
+      
+      var btnDelete = document.createElement('input');
+      btnDelete.value = 'Delete';
+      btnDelete.type = 'button';
+
+      btnDelete.onclick = () => {
         localStorage.removeItem(myObj.Mail);
         items.removeChild(node);
       }
+
+      var btnEdit = document.createElement('input');
+      btnEdit.type = 'button';
+      btnEdit.value = 'Edit';
+      btnEdit.onclick = () => {
+        localStorage.removeItem(myObj.Mail);
+        items.removeChild(node);
+        document.getElementById('userName').value = myObj.Name;
+        document.getElementById('userEmail').value = myObj.Mail;
+        document.getElementById('userNumber').value = myObj.Number;
+      }
+
+      node.appendChild(document.createTextNode(text));
+      node.appendChild(btnDelete);
+      node.appendChild(btnEdit);
+      items.appendChild(node);
     }
   </script>
 </body>
